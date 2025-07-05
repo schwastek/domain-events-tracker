@@ -1,4 +1,7 @@
-﻿using Domain;
+﻿using Domain.AccessRights;
+using Domain.Applications;
+using Domain.Authentications;
+using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data;

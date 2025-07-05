@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Domain.AccessRights;
+using Domain.Common;
+using System.Collections.Generic;
 
-namespace Domain;
+namespace Domain.Applications;
 
-public class Application
+public class Application : IIdentity<long>
 {
     public long Id { get; private set; }
     public string Code { get; private set; }
@@ -15,5 +17,10 @@ public class Application
     public Application(string code)
     {
         Code = code;
+    }
+
+    public override string ToString()
+    {
+        return $"Application: {Code}";
     }
 }

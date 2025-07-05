@@ -1,6 +1,8 @@
-namespace Domain;
+﻿using Domain.Common;
 
-public class Authentication
+namespace Domain.Authentications;
+
+public class Authentication : IIdentity<long>
 {
     public long Id { get; private set; }
     public string Username { get; private set; }
@@ -15,5 +17,10 @@ public class Authentication
     public void SetUsername(string username)
     {
         Username = username;
+    }
+
+    public override string ToString()
+    {
+        return $"Authentication [Username: {Username}]";
     }
 }
