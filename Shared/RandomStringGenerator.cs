@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Text;
 
-namespace UnitTests.Helpers;
+namespace Shared;
 
 public static class RandomStringGenerator
 {
     private const string _alphanumericCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    private static readonly Random _random = new();
 
     public static string Generate(int length = 6)
     {
@@ -16,7 +15,7 @@ public static class RandomStringGenerator
 
         for (int i = 0; i < length; i++)
         {
-            var index = _random.Next(_alphanumericCharacters.Length);
+            var index = Random.Shared.Next(_alphanumericCharacters.Length);
             result.Append(_alphanumericCharacters[index]);
         }
 

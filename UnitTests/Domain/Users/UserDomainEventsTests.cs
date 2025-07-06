@@ -2,6 +2,7 @@
 using Domain.Applications;
 using Domain.Authentications;
 using Domain.Users;
+using Shared;
 using System.Linq;
 using Xunit;
 
@@ -28,9 +29,9 @@ public sealed class UserDomainEventsTests
         // Arrange
         var user = new User();
 
-        var authentication1 = new Authentication(username: Helpers.RandomStringGenerator.Generate());
-        var authentication2 = new Authentication(username: Helpers.RandomStringGenerator.Generate());
-        var authentication3 = new Authentication(username: Helpers.RandomStringGenerator.Generate());
+        var authentication1 = new Authentication(username: RandomStringGenerator.Generate());
+        var authentication2 = new Authentication(username: RandomStringGenerator.Generate());
+        var authentication3 = new Authentication(username: RandomStringGenerator.Generate());
 
         user.AddAuthentication(authentication1);
         user.AddAuthentication(authentication2);
@@ -52,10 +53,10 @@ public sealed class UserDomainEventsTests
     {
         // Arrange
         var user = new User();
-        var application = new Application(code: Helpers.RandomStringGenerator.Generate());
+        var application = new Application(code: RandomStringGenerator.Generate());
 
-        var accessRight1 = new AccessRight(user, application, applicationUserId: Helpers.RandomStringGenerator.Generate());
-        var accessRight2 = new AccessRight(user, application, applicationUserId: Helpers.RandomStringGenerator.Generate());
+        var accessRight1 = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());
+        var accessRight2 = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());
 
         user.AddAccessRight(accessRight1);
         user.AddAccessRight(accessRight2);
@@ -79,10 +80,10 @@ public sealed class UserDomainEventsTests
     {
         // Arrange
         var user = new User();
-        var application = new Application(code: Helpers.RandomStringGenerator.Generate());
+        var application = new Application(code: RandomStringGenerator.Generate());
 
-        var accessRight = new AccessRight(user, application, applicationUserId: Helpers.RandomStringGenerator.Generate());
-        var authentication = new Authentication(username: Helpers.RandomStringGenerator.Generate());
+        var accessRight = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());
+        var authentication = new Authentication(username: RandomStringGenerator.Generate());
 
         // Act
         user.AddAuthentication(authentication);
@@ -100,10 +101,10 @@ public sealed class UserDomainEventsTests
     {
         // Arrange
         var user = new User();
-        var application = new Application(code: Helpers.RandomStringGenerator.Generate());
+        var application = new Application(code: RandomStringGenerator.Generate());
 
-        var accessRight = new AccessRight(user, application, applicationUserId: Helpers.RandomStringGenerator.Generate());
-        var authentication = new Authentication(username: Helpers.RandomStringGenerator.Generate());
+        var accessRight = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());
+        var authentication = new Authentication(username: RandomStringGenerator.Generate());
 
         user.AddAccessRight(accessRight);
         user.RemoveAccessRight(accessRight);

@@ -13,7 +13,7 @@ public class User : IIdentity<long>, IHaveDomainEvents
     public long Id { get; private set; }
     public Guid ObjectId { get; private set; }
 
-    public long AuthenticationId { get; private set; }
+    public long? AuthenticationId { get; private set; }
     public Authentication? Authentication { get; private set; }
 
     private readonly List<AccessRight> _accessRights = [];
