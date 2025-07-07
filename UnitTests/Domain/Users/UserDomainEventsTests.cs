@@ -14,7 +14,7 @@ public sealed class UserDomainEventsTests
     public void Creating_user_entity_emits_expected_event()
     {
         // Arrange
-        var user = new User();
+        var user = User.Create();
 
         // Act
         var events = user.CollectDomainEvents();
@@ -27,7 +27,7 @@ public sealed class UserDomainEventsTests
     public void Changing_authentication_property_emits_expected_event()
     {
         // Arrange
-        var user = new User();
+        var user = User.Create();
 
         var authentication1 = new Authentication(username: RandomStringGenerator.Generate());
         var authentication2 = new Authentication(username: RandomStringGenerator.Generate());
@@ -52,7 +52,7 @@ public sealed class UserDomainEventsTests
     public void Changing_access_rights_collection_emits_expected_event()
     {
         // Arrange
-        var user = new User();
+        var user = User.Create();
         var application = new Application(code: RandomStringGenerator.Generate());
 
         var accessRight1 = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());
@@ -79,7 +79,7 @@ public sealed class UserDomainEventsTests
     public void Clear_domain_events_removes_all_events()
     {
         // Arrange
-        var user = new User();
+        var user = User.Create();
         var application = new Application(code: RandomStringGenerator.Generate());
 
         var accessRight = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());
@@ -100,7 +100,7 @@ public sealed class UserDomainEventsTests
     public void No_events_emitted_when_mutually_exclusive_changes()
     {
         // Arrange
-        var user = new User();
+        var user = User.Create();
         var application = new Application(code: RandomStringGenerator.Generate());
 
         var accessRight = new AccessRight(user, application, applicationUserId: RandomStringGenerator.Generate());

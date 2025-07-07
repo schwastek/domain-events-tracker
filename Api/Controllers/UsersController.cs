@@ -1,4 +1,5 @@
-﻿using Core.Dto;
+﻿using Api.Filters;
+using Core.Dto;
 using Core.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ namespace Api.Controllers;
 
 [Route("api/users")]
 [ApiController]
+[UseTransaction]
 [Produces(MediaTypeNames.Application.Json)]
 [Consumes(MediaTypeNames.Application.Json)]
 public class UsersController : ControllerBase

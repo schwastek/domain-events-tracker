@@ -23,11 +23,21 @@ public class User : IIdentity<long>, IHaveDomainEvents
     private readonly EntityChangeTracker _tracker = new();
 
     // EF uses the parameterless constructor to materialize entities.
-    public User()
-    {
-        ObjectId = Guid.NewGuid();
+    private User() { }
 
+    private User(Guid objectId)
+    {
+        ObjectId = objectId;
         _events.Add(new UserEntityCreatedEvent(this));
+    }
+
+    // EF calls the parameterless constructors on materialization, so any constructor side-effects (like domain events) fire on every load.
+    // Use a static factory method to to raise events only on real creation.
+    // You can't detect transient state in the ctor, because EF populates properties only after invoking the default ctor.
+    public static User Create()
+    {
+        var user = new User(Guid.NewGuid());
+        return user;
     }
 
     public void AddAccessRight(AccessRight accessRight)

@@ -21,7 +21,7 @@ public class CreateUserRequestHandler : IRequestHandler<CreateUserRequest, UserD
 
     public async Task<UserDtoForRead> Handle(CreateUserRequest request, CancellationToken ct)
     {
-        var user = new User();
+        var user = User.Create();
         _dbContext.Users.Add(user);
         await _dbContext.SaveChangesAsync(ct);
         var domainEventDescription = user.CollectDomainEvents().OfType<UserEntityCreatedEvent>().First().ToString();

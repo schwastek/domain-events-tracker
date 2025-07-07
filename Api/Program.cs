@@ -1,4 +1,6 @@
-﻿using Core;
+﻿using Api.Extensions;
+using Api.Filters;
+using Core;
 using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +21,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString)
 );
 
+// Add SQL transaction filter.
+builder.Services.AddScoped<TransactionFilter>();
+
 // Add handlers.
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(ICoreAssemblyMarker).Assembly);
 });
+
+// Add domain events handlers.
+builder.Services.AddNotificationHandlers();
 
 var app = builder.Build();
 

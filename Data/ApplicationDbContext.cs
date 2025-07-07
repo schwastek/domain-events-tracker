@@ -1,5 +1,6 @@
 ﻿using Domain.AccessRights;
 using Domain.Applications;
+using Domain.AuditLogs;
 using Domain.Authentications;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Authentication> Authentications => Set<Authentication>();
     public DbSet<AccessRight> AccessRights => Set<AccessRight>();
     public DbSet<Application> Applications => Set<Application>();
+    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
